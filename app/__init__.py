@@ -1,8 +1,11 @@
+import os
 from flask import Flask, render_template
+from . import db
 def create_app():
     app = Flask(__name__)
+    app.config['DATABASE'] = os.path.join(os.getcwd(), 'flask.sqlite')
+    db.init_app(app)
     @app.route('/')
-    @app.route('/index')
     def index():
         user = {'username': 'Nandhini'}
         return render_template('home.html', title='Home', user=user)
