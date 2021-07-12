@@ -1,0 +1,5 @@
+.venv
+__pycache__
+*.pyc
+.env
+SQLite format 3 @  .S`
