@@ -20,11 +20,11 @@ def create_app():
         return "200"
 
     @app.route('/register', methods=('GET', 'POST'))
-    def register():
-        if request.method == "POST":
-            username = request.form.get("username")
-            password = request.form.get("password")
-            error = None
+def register():
+    if request.method == "POST":
+        username = request.form.get("username")
+        password = request.form.get("password")
+        error = None
 
         if not username:
             error = "Username is required."
@@ -40,7 +40,6 @@ def create_app():
             return f"User {username} created successfully"
         else:
             return error, 418
-
     return render_template("register.html")
 
 
