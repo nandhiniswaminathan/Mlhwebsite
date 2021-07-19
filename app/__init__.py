@@ -21,10 +21,10 @@ def create_app():
 
     @app.route('/register', methods=('GET', 'POST'))
     def register():
-    if request.method == "POST":
-        username = request.form.get("username")
-        password = request.form.get("password")
-        error = None
+        if request.method == "POST":
+            username = request.form.get("username")
+            password = request.form.get("password")
+            error = None
 
         if not username:
             error = "Username is required."
@@ -46,11 +46,11 @@ def create_app():
 
     @app.route("/login", methods=["GET", "POST"])
     def login():
-        if request.method == "POST":
-            username = request.form.get("username")
-            password = request.form.get("password")
-            error = None
-            user = UserModel.query.filter_by(username=username).first()
+            if request.method == "POST":
+                username = request.form.get("username")
+                password = request.form.get("password")
+                error = None
+                user = UserModel.query.filter_by(username=username).first()
 
             if user is None:
                 error = "Incorrect username."
