@@ -37,21 +37,9 @@ class UserModel(db.Model):
     def __repr__(self):
         return f"<User {self.username}>"
 
-
-# links ending in ("/") will redirect to the file within the ()
-# The same style applies to the following methods
-# This allows multiple pages to interact through links.
-
-
 @app.route("/")
 def home():
     return render_template("home.html")
-
-
-@app.route("/health", methods=["GET"])
-def health():
-    return "200"
-
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
@@ -75,7 +63,6 @@ def register():
         else:
             return error, 418
 
-    # Return a register page
     return render_template("register.html")
 
 
@@ -97,8 +84,12 @@ def login():
         else:
             return error, 418
 
-    # Return a login page
     return render_template("login.html")
+
+
+@app.route("/health", methods=["GET"])
+def health():
+    return "200"
 
 if __name__ == "__main__":
     app.run(debug=True)
