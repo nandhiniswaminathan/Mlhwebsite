@@ -7,5 +7,5 @@ RUN pip3 install -r requirements.txt
 
 COPY . /myportfolio
 
-RUN chmod u+x ./entrypoint.sh
+RUN chmod +x ./entrypoint.sh
 CMD ["./entrypoint.sh"]
