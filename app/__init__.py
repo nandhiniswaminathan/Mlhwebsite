@@ -40,17 +40,17 @@ class UserModel(db.Model):
 def home():
     return render_template("home.html")
 
-@app.route("/register", methods=["GET", "POST"])
+@app.route('/register', methods=('GET', 'POST'))
 def register():
-    if request.method == "POST":
-        username = request.form.get("username")
-        password = request.form.get("password")
+    if request.method == 'POST':
+        username = request.form.get('username')
+        password = request.form.get('password')
         error = None
 
         if not username:
-            error = "Username is required."
+            error = 'Username is required.'
         elif not password:
-            error = "Password is required."
+            error = 'Password is required.'
         elif UserModel.query.filter_by(username=username).first() is not None:
             error = f"User {username} is already registered."
 
@@ -62,29 +62,30 @@ def register():
         else:
             return error, 418
 
-    return render_template("register.html")
+    # TODO: Return a restister page
+    return "Register Page not yet implemented", 501
 
 
-@app.route("/login", methods=["GET", "POST"])
+@app.route('/login', methods=('GET', 'POST'))
 def login():
-    if request.method == "POST":
-        username = request.form.get("username")
-        password = request.form.get("password")
+    if request.method == 'POST':
+        username = request.form.get('username')
+        password = request.form.get('password')
         error = None
         user = UserModel.query.filter_by(username=username).first()
 
         if user is None:
-            error = "Incorrect username."
+            error = 'Incorrect username.'
         elif not check_password_hash(user.password, password):
-            error = "Incorrect password."
+            error = 'Incorrect password.'
 
         if error is None:
             return "Login Successful", 200
         else:
             return error, 418
 
-    return render_template("login.html")
-
+    # TODO: Return a login page
+    return "Login Page not yet implemented", 501
 
 @app.route("/health", methods=["GET"])
 def health():
