@@ -1,10 +1,7 @@
 version: "3"
 services:
   web:
-    container_name: web
     build: .
-    ports:
-      - "5000:80"
     restart: always
     env_file:
       - .env
@@ -14,16 +11,12 @@ services:
       - db
 
   db:
-    container_name: db
     image: postgres
     restart: always
     env_file:
       - .env
-    volumes:
-     - ./flask.sqlite:/myportfolio/flask.sqlite
 
-nginx:
-    container_name: nginx
+  nginx:
     image: jonasal/nginx-certbot:latest
     restart: unless-stopped
     env_file:
@@ -36,7 +29,6 @@ nginx:
       - ./user_conf.d:/etc/nginx/user_conf.d
     depends_on:
       - web
- 
+
 volumes:
-  mydatabase:
   nginx_secrets:
