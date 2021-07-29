@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/sh
 flask db migrate
 flask db upgrade
 
